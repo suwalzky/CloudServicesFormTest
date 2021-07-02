@@ -50,19 +50,22 @@ namespace Structura.GuiTests
 
             var basicDataFormPage = new BasicDataFormPage(_driver);
             basicDataFormPage.OpenPage();
-
-            basicDataFormPage.DateOfBirthInput.SendKeys(dateOfBirth);
-            basicDataFormPage.FirstNameInput.SendKeys(firstName);
-            basicDataFormPage.LastNameInput.SendKeys(lastName);
-            basicDataFormPage.EmailInput.SendKeys(email);
-            basicDataFormPage.PhoneInput.SendKeys(phoneNumber.ToString());
-            basicDataFormPage.PeselInput.SendKeys(peselNumber.ToString());
-            basicDataFormPage.IdNumberInput.SendKeys(idNumber);
-
+            FillBasicDataForm();
             basicDataFormPage.GoToNextStepForm();
 
             Assert.IsTrue(new SeleniumUtils(_driver).IsElementPresent(Selectors.UserConsentsFormPageSelectors.FirstConsentsCheckboxSelector), 
                 "The test correctly completed fields in step 1 of the form and successfully proceeded to step 2.");
+            
+            void FillBasicDataForm()
+            {
+                basicDataFormPage.DateOfBirthInput.SendKeys(dateOfBirth);
+                basicDataFormPage.FirstNameInput.SendKeys(firstName);
+                basicDataFormPage.LastNameInput.SendKeys(lastName);
+                basicDataFormPage.EmailInput.SendKeys(email);
+                basicDataFormPage.PhoneInput.SendKeys(phoneNumber.ToString());
+                basicDataFormPage.PeselInput.SendKeys(peselNumber.ToString());
+                basicDataFormPage.IdNumberInput.SendKeys(idNumber);
+            }
         }
     }
 }
